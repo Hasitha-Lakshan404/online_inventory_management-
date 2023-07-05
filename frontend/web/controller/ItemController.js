@@ -14,13 +14,19 @@ $('#btnSaveAddItem').click(function () {
 
 /*Save*/
 function saveItem() {
+    let des;
+    if($('#addItemDescription').val()!=""){
+        des=$('#addItemDescription').val();
+    }else{
+        des="No Description"
+    }
 
     var item = {
         itemName: $('#addItemName').val(),
         itemType: $('#addItemType').val(),
         quantity: $('#addItemQuantity').val() + " " + $('#qtyDropdown').val(),
         unitPrice: $('#addItemUnitPrice').val(),
-        description: $('#addItemDescription').val()
+        description: des
     }
     console.log(item);
     $.ajax({
@@ -31,6 +37,7 @@ function saveItem() {
         success: function (res) {
             if (res.status == 200) {
                 alert(res.message);
+                loadItemData();
             }
             loadItemData();
         },
