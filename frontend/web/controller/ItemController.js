@@ -134,3 +134,18 @@ function itemUpdate() {
         }
     });
 }
+
+/*Delete*/
+$("#btnDeleteAddItem").click(function () {
+    deleteItem();
+})
+
+function deleteItem() {
+    $.ajax({
+        url: baseUrl+"item?id=" + iId,
+        method: "delete",
+        success(resp) {
+            loadItemData();
+        }
+    });
+}

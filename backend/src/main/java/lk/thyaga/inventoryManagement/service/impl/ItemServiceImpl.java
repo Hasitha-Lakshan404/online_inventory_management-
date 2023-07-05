@@ -47,4 +47,14 @@ public class ItemServiceImpl implements ItemService {
     public void updateItem(ItemDTO item) {
         repo.save(mapper.map(item, Item.class));
     }
+
+    @Override
+    public void deleteItem(long id) {
+        if (!repo.existsById(id)) {
+            throw new RuntimeException("Item " + id + " Not Available to Delete..!");
+        }
+        repo.deleteById(id);
+    }
 }
+
+

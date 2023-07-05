@@ -34,9 +34,16 @@ public class ItemController {
     }
 
     @PutMapping
-    public ResponseUtil updateEmployee(@RequestBody ItemDTO item) {
+    public ResponseUtil updateItem(@RequestBody ItemDTO item) {
         service.updateItem(item);
         return new ResponseUtil("200", "Successfully Updated.", null);
+    }
+
+
+    @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteItem(@RequestParam long id){
+        service.deleteItem(id);
+        return new ResponseUtil("200",id+" :Item Deleted.!",null);
     }
 
 }
