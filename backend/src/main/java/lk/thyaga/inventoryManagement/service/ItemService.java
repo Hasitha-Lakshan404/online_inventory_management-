@@ -14,4 +14,5 @@ import java.util.List;
 public interface ItemService {
     void saveItem(ItemDTO dto);
     public List<ItemDTO> getAllItems();
+    void updateItem(ItemDTO item);
 }

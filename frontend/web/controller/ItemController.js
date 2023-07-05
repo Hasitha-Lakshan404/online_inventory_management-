@@ -1,25 +1,30 @@
 var baseUrl = "http://localhost:8080/api/v1/"
+var iId;
+let des;
 
 $(window).on('load', function () {
-   loadItemData();
+    loadItemData();
 })
-
-
-
 
 
 $('#btnSaveAddItem').click(function () {
     saveItem();
 })
 
+
+function setAutoDescription() {
+    if ($('#addItemDescription').val() != "") {
+        return  $('#addItemDescription').val();
+    } else {
+        return  "No Description"
+    }
+}
+
+
 /*Save*/
 function saveItem() {
-    let des;
-    if($('#addItemDescription').val()!=""){
-        des=$('#addItemDescription').val();
-    }else{
-        des="No Description"
-    }
+
+    des =setAutoDescription();
 
     var item = {
         itemName: $('#addItemName').val(),
@@ -54,7 +59,7 @@ function loadItemData() {
     $.ajax({
         url: baseUrl + "item/" + "allItems",
         method: "GET",
-        success: function (resp){
+        success: function (resp) {
             console.log(resp)
             for (const item of resp.data) {
 
@@ -73,6 +78,59 @@ function loadItemData() {
 
                 });
             }
+            //for bind the table row click event/when the row click value set the input fields
+            bindRowClickEvents();
+        }
+    });
+}
+
+
+function bindRowClickEvents() {
+    $("#itemTable>tr").click(function () {
+
+        var qty = $(this).children(":eq(4)").text().split(" ");
+
+        iId =$(this).children(":eq(0)").text();
+        $('#addItemName').val($(this).children(":eq(1)").text());
+        $('#addItemType').val($(this).children(":eq(2)").text());
+        $('#addItemQuantity').val(qty[0]);
+        $('#qtyDropdown').val(qty[1]);
+        $('#addItemDescription').val($(this).children(":eq(3)").text());
+        $('#addItemUnitPrice').val($(this).children(":eq(5)").text());
+
+    });
+}
+
+
+/*Update*/
+$("#btnUpdateAddItem").click(function () {
+    itemUpdate();
+})
+
+function itemUpdate() {
+    des =setAutoDescription();
+
+    var itm = {
+        itemId:iId,
+        itemName: $('#addItemName').val(),
+        itemType: $('#addItemType').val(),
+        quantity: $('#addItemQuantity').val() + " " + $('#qtyDropdown').val(),
+        unitPrice: $('#addItemUnitPrice').val(),
+        description: des
+    }
+
+
+    $.ajax({
+        url: baseUrl + 'item',
+        method: 'put',
+        contentType: "application/json",
+        data: JSON.stringify(itm),
+        success: function (res) {
+            // alert(res.message);
+           loadItemData();
+        }, error: function (error) {
+            var jsObject = JSON.parse(error.responseText);
+            alert(jsObject.message);
         }
     });
 }

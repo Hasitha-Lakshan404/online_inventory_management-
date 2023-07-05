@@ -33,4 +33,10 @@ public class ItemController {
         return new ResponseUtil("200", "Done", service.getAllItems());
     }
 
+    @PutMapping
+    public ResponseUtil updateEmployee(@RequestBody ItemDTO item) {
+        service.updateItem(item);
+        return new ResponseUtil("200", "Successfully Updated.", null);
+    }
+
 }
