@@ -11,9 +11,9 @@ function saveItem() {
     var item = {
         itemName : $('#addItemName').val(),
         itemType : $('#addItemType').val(),
-        itemQuantity : $('#addItemQuantity').val()+" "+$('#qtyDropdown').val(),
-        itemUnitPrice : $('#addItemUnitPrice').val(),
-        itemDesc : $('#addItemDescription').val()
+        quantity : $('#addItemQuantity').val()+" "+$('#qtyDropdown').val(),
+        unitPrice : $('#addItemUnitPrice').val(),
+        description : $('#addItemDescription').val()
     }
     console.log(item);
     $.ajax({

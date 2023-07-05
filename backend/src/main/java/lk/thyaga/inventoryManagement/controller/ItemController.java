@@ -1,8 +1,10 @@
 package lk.thyaga.inventoryManagement.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lk.thyaga.inventoryManagement.dto.ItemDTO;
+import lk.thyaga.inventoryManagement.service.ItemService;
+import lk.thyaga.inventoryManagement.util.ResponseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author : Hasitha Lakshan
@@ -16,4 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class ItemController {
 
+    @Autowired
+    ItemService service;
+
+    @PostMapping
+    public ResponseUtil saveEmployee(@RequestBody ItemDTO dto) {
+        service.saveItem(dto);
+        return new ResponseUtil("200", "Successfully Saved.", null);
+    }
 }
