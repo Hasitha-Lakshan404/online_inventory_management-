@@ -55,9 +55,9 @@ function loadItemData() {
             <td>${item.itemId}</td>
             <td>${item.itemName}</td>
             <td>${item.itemType}</td>
+            <td>${item.description}</td>
             <td>${item.quantity}</td>
             <td>${item.unitPrice}</td>
-            <td>${item.description}</td>
            </tr>`;
                 $("#itemTable").append(row);
 
