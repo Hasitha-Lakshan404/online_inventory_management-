@@ -4,6 +4,7 @@ import lk.thyaga.inventoryManagement.dto.ItemDTO;
 import lk.thyaga.inventoryManagement.service.ItemService;
 import lk.thyaga.inventoryManagement.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -26,4 +27,10 @@ public class ItemController {
         service.saveItem(dto);
         return new ResponseUtil("200", "Successfully Saved.", null);
     }
+
+    @GetMapping(path = "allItems", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllItems() {
+        return new ResponseUtil("200", "Done", service.getAllItems());
+    }
+
 }

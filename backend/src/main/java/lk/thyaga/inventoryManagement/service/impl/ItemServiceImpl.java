@@ -5,8 +5,11 @@ import lk.thyaga.inventoryManagement.entity.Item;
 import lk.thyaga.inventoryManagement.repo.ItemRepo;
 import lk.thyaga.inventoryManagement.service.ItemService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author : Hasitha Lakshan
@@ -32,5 +35,11 @@ public class ItemServiceImpl implements ItemService {
         } else {
             throw new RuntimeException(dto.getItemId() + " " + "This Item Already Exists..!");
         }
+    }
+
+    @Override
+    public List<ItemDTO> getAllItems() {
+        return mapper.map(repo.findAll(), new TypeToken<List<ItemDTO>>() {
+        }.getType());
     }
 }

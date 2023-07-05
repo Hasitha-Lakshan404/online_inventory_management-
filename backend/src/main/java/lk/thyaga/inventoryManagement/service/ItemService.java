@@ -2,6 +2,8 @@ package lk.thyaga.inventoryManagement.service;
 
 import lk.thyaga.inventoryManagement.dto.ItemDTO;
 
+import java.util.List;
+
 /**
  * @author : Hasitha Lakshan
  * Project Name: thyaga_task
@@ -11,4 +13,5 @@ import lk.thyaga.inventoryManagement.dto.ItemDTO;
 
 public interface ItemService {
     void saveItem(ItemDTO dto);
+    public List<ItemDTO> getAllItems();
 }
