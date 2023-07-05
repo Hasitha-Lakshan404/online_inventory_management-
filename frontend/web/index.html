@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Inventory Management</title>
-    <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="assets/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
 </head>
 
 <body>
+
+<!--Header-->
 <main>
     <!-- ======= HeadSlid ======= -->
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/images/woman-choosing-products-super-market.jpg')">
+    <div class="breadcrumbs d-flex align-items-center"
+         style="background-image: url('assets/images/woman-choosing-products-super-market.jpg')">
         <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade"
              style="opacity: 1">
 
@@ -20,6 +23,129 @@
             </ol>
         </div>
     </div><!-- End HeadSlid -->
+</main>
+
+<!--Main sections-->
+<main class="container-fluid">
+    <!--Data Inputs-->
+    <section>
+        <main id="addItemMainView">
+            <main class="main" id="addItemMain">
+                <form id="addItemForm" style="margin-left: 5px; margin-top: 44px;">
+                    <div class="row">
+                        <!--Item Name-->
+                        <div class="col-sm-4">
+                            <div class="form-groupMRT">
+                                <input class="form-control" id="addItemName" placeholder="Item Name"
+                                       type="text">
+                                <span class="control-error" id="lblAddItemName"></span>
+                            </div>
+                        </div>
+
+                        <!--Type-->
+                        <div class="col-sm-4">
+                            <div class="form-groupMRT">
+                                <input class="form-control" id="addItemType" placeholder="Item Type"
+                                       type="text">
+                                <span class="control-error" id="lblAddItemType"></span>
+                            </div>
+                        </div>
+
+                        <!--Quantity-->
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <!--Que-->
+                                <div class="col-sm-4">
+                                    <div class="form-groupMRT">
+                                        <input class="form-control" id="addItemQuantity" placeholder="Quantity"
+                                               type="text">
+                                        <span class="control-error" id="lblAddItemQuantity"></span>
+                                    </div>
+                                </div>
+                                <!--Dropdown-->
+                                <div class="col-sm-4 pt-2">
+                                    <div class="form-groupMRT">
+                                        <div class="form-groupMRT">
+                                            <select id="qtyDropdown" name="qtyDropdown">
+                                                <!--Options-->
+                                                <option>Packet</option>
+                                                <option>Bottle</option>
+                                                <option>liter</option>
+                                                <option>Kg</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <br>
+
+                    <!--Unit Price-->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-groupMRT">
+                                <input class="form-control" id="addItemUnitPrice" placeholder="Unit Price"
+                                       type="text">
+                                <span class="control-error" id="lblAddItemUnitPrice"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <!--Description-->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <textarea class="form-control" id="addItemDescription"
+                                          placeholder="Description here" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+
+
+                </form>
+
+                <div class="row mt-4 mb-3">
+
+                    <div class="col-sm-3">
+                        <button class="btn btn-primary" id="btnDeleteAddItem"
+                                style="background-color: orangered;color: white; border: none">Delete
+                        </button>
+                    </div>
+
+                    <div class="col-sm-3" style="margin-left: -250px">
+                        <button class="btn btn-primary" id="btnUpdateAddItem"
+                                style="background-color: orangered;color: white; border: none">Update
+                        </button>
+                    </div>
+
+                    <div class="col-sm-3" style="margin-left: -245px">
+                        <button class="btn btn-primary" id="btnSaveAddItem"
+                                style="background-color: navy;color: white; border: none">New
+                        </button>
+                    </div>
+
+
+                    <div class="col-sm-3" style="margin-left: -260px">
+                        <button class="btn btn-primary" id="btnNewAddItem"
+                                style="border: none">Save
+                        </button>
+                    </div>
+
+
+                </div>
+
+
+            </main><!-- End #main -->
+        </main>
+    </section>
 
 
     <!-- Item Table -->
