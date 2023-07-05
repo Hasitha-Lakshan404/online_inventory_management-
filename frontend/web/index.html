@@ -4,11 +4,69 @@
     <meta charset="UTF-8">
     <title>Inventory Management</title>
     <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
 <body>
+<main>
+    <!-- ======= HeadSlid ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/images/woman-choosing-products-super-market.jpg')">
+        <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade"
+             style="opacity: 1">
+
+            <h2>Item Management</h2>
+            <ol>
+                <li>Manage your Items</li>
+            </ol>
+        </div>
+    </div><!-- End HeadSlid -->
 
 
+    <!-- Item Table -->
+    <div class="col-12">
+        <div class="card item-table overflow-auto">
+
+            <div class="card-body pb-0">
+
+                <table class="table table-borderless">
+                    <thead>
+                    <tr>
+                        <th scope="col">Item id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Unit Price</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="car-overView">
+                    <tr style="border-bottom: 1px solid #D2D2D2">
+                        <td>01</td>
+                        <td class="text-primary fw-bold">LUX</td>
+                        <td>Soap</td>
+                        <td>Bathing Soap</td>
+                        <td>20 pkt</td>
+                        <td>120.00</td>
+                    </tr>
+
+                    <tr style="border-bottom: 1px solid #D2D2D2">
+                        <td>01</td>
+                        <td class="text-primary fw-bold">Sunlight</td>
+                        <td>Soap</td>
+                        <td>Bathing Soap</td>
+                        <td>40 pkt</td>
+                        <td>120.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div><!-- End Item Table -->
+
+</main>
 
 <script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
 </body>
