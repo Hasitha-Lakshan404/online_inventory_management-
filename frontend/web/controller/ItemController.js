@@ -1,6 +1,9 @@
 var baseUrl = "http://localhost:8080/api/v1/"
 var iId;
 let des;
+let bool;
+let it;
+
 
 $(window).on('load', function () {
     loadItemData();
@@ -8,13 +11,8 @@ $(window).on('load', function () {
 
 
 $('#btnSaveAddItem').click(function () {
+    duplicateChecker();
 
-    console.log("Save eke check krna eaka"+isItemDuplicate())
-    if(isItemDuplicate()){ //if the item Name already exists
-        alert("Your Name is already in")
-    }else{
-        saveItem();
-    }
 })
 
 
@@ -171,31 +169,40 @@ $("#btnNewAddItem").click(function () {
 })
 
 
+
 /*function validate*/
 
-
 /*item duplicate add validate*/
-function isItemDuplicate() {
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            url: baseUrl + "item/" + "allItems",
-            method: "GET",
-            success: function (resp) {
-                if (resp.status === 200) {
-                    for (const item of resp.data) {
-                        if (item.itemName === $('#addItemName').val()) {
-                            resolve(true);
-                            return true;
-                        }
-                    }
-                    resolve(false);
-                } else {
-                    reject(new Error('Failed to fetch items.'));
+function isItemDuplicate(callback) {
+    $.ajax({
+        url: baseUrl + "item/" + "allItems",
+        method: "GET",
+        success: function (resp) {
+            for (const item of resp.data) {
+                if (item.itemName === $('#addItemName').val()) {
+                    it=item;
+                    callback(true);
+                    return;
                 }
-            },
-            error: function (error) {
-                reject(error);
             }
-        });
+            callback(false);
+        }
     });
 }
+
+function duplicateChecker() {
+    isItemDuplicate(function (isDuplicate) {
+        /*console.log(it); // Output: true or false
+        console.log(isDuplicate); // Output: true or false
+       bool=isDuplicate;*/
+
+        if(isDuplicate){
+            alert("duplicate")
+        }else{
+            saveItem();
+        }
+
+
+    });
+}
+
