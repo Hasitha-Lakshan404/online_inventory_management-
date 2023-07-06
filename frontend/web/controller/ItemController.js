@@ -58,13 +58,19 @@ function saveItem() {
 
 /*Load All Items*/
 function loadItemData() {
+    var setAr = new Set();
+
     $("#itemTable").empty();
+    $("#findItemByTypeDropdown").empty();
+
+
 
     $.ajax({
         url: baseUrl + "item/" + "allItems",
         method: "GET",
         success: function (resp) {
             console.log(resp)
+
             for (const item of resp.data) {
 
                 let row = `<tr>
@@ -75,6 +81,11 @@ function loadItemData() {
             <td>${item.quantity}</td>
             <td>${item.unitPrice}</td>
            </tr>`;
+
+
+                setAr.add(item.itemType);
+
+
                 $("#itemTable").append(row);
 
                 $("#itemTable").off("click");
@@ -82,6 +93,11 @@ function loadItemData() {
 
                 });
             }
+            for (const el of setAr) {
+                var dropDta = `<option>${el}</option>`;
+                $("#findItemByTypeDropdown").append(dropDta);
+            }
+
             //for bind the table row click event/when the row click value set the input fields
             bindRowClickEvents();
         }
@@ -122,9 +138,6 @@ $("#btnUpdateAddItem").click(function () {
 })
 
 function itemUpdate(itm) {
-
-
-
     $.ajax({
         url: baseUrl + 'item',
         method: 'put',
@@ -196,13 +209,13 @@ function duplicateChecker() {
             console.log(it);
 
             var qty = it.quantity.split(" ");
-            let totalQty= parseInt(qty[0])+parseInt($('#addItemQuantity').val())
+            let totalQty = parseInt(qty[0]) + parseInt($('#addItemQuantity').val())
 
             var newItem = {
                 itemId: it.itemId,
                 itemName: it.itemName,
                 itemType: it.itemType,
-                quantity: totalQty + " " +qty[1],
+                quantity: totalQty + " " + qty[1],
                 unitPrice: it.unitPrice,
                 description: it.description
             }
@@ -219,7 +232,7 @@ function duplicateChecker() {
 
 /*Search | Sort*/
 
-$('#searchInput').keypress(function(event) {
+$('#searchInput').keypress(function (event) {
     if (event.which === 13) { //track the "ENTER" key
         const searchWord = $(this).val();
 
@@ -246,6 +259,11 @@ $('#searchInput').keypress(function(event) {
             }
         });
 
-
     }
+});
+
+$("#findItemByTypeDropdown").change(function () {
+    // Event handler code here
+    var selectedValue = $(this).val();
+    console.log("Selected option: " + selectedValue);
 });

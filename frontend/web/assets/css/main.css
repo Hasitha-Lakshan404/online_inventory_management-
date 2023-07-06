@@ -114,3 +114,19 @@ a:hover {
 }
 
 
+
+/**/
+.cssForDropdown {
+    width: 200px;
+    padding: 10px;
+    font-size: 13px;
+    background-color: #F2F2F2;
+    border: 2px solid #DDDDDD;
+    color: #333333;
+    border-radius: 5px;
+}
+
+.cssForDropdown option {
+    background-color: #ECECEC;
+    color: #333333;
+}
