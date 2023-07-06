@@ -16,5 +16,5 @@ public interface ItemService {
     public List<ItemDTO> getAllItems();
     void updateItem(ItemDTO item);
     void deleteItem(long id);
-
+    List<ItemDTO> searchByAll(String searchWord);
 }

@@ -55,6 +55,12 @@ public class ItemServiceImpl implements ItemService {
         }
         repo.deleteById(id);
     }
+
+    @Override
+    public List<ItemDTO> searchByAll(String searchWord) {
+        return mapper.map(repo.searchByAll(searchWord), new TypeToken<List<ItemDTO>>() {
+        }.getType());
+    }
 }
 
 

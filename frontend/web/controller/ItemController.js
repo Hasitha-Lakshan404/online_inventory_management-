@@ -191,9 +191,6 @@ function isItemDuplicate(callback) {
 
 function duplicateChecker() {
     isItemDuplicate(function (isDuplicate) {
-        /*; // Output: true or false
-        console.log(isDuplicate); // Output: true or false
-       bool=isDuplicate;*/
 
         if (isDuplicate) { //if item name already exists
             console.log(it);
@@ -220,3 +217,35 @@ function duplicateChecker() {
     });
 }
 
+/*Search | Sort*/
+
+$('#searchInput').keypress(function(event) {
+    if (event.which === 13) { //track the "ENTER" key
+        const searchWord = $(this).val();
+
+        $("#itemTable").empty();
+
+        $.ajax({
+            url: baseUrl + `item/searchItem?val=${encodeURIComponent(searchWord)}`,
+            method: "GET",
+            success: function (resp) {
+                for (const item of resp.data) {
+                    let div = `<tr>
+            <td>${item.itemId}</td>
+            <td>${item.itemName}</td>
+            <td>${item.itemType}</td>
+            <td>${item.description}</td>
+            <td>${item.quantity}</td>
+            <td>${item.unitPrice}</td>
+           </tr>`;
+                    $("#itemTable").append(div);
+                    bindRowClickEvents();
+
+                }
+
+            }
+        });
+
+
+    }
+});

@@ -23,7 +23,7 @@ public class ItemController {
     ItemService service;
 
     @PostMapping
-    public ResponseUtil saveEmployee(@RequestBody ItemDTO dto) {
+    public ResponseUtil saveItem(@RequestBody ItemDTO dto) {
         service.saveItem(dto);
         return new ResponseUtil("200", "Successfully Saved.", null);
     }
@@ -44,6 +44,11 @@ public class ItemController {
     public ResponseUtil deleteItem(@RequestParam long id){
         service.deleteItem(id);
         return new ResponseUtil("200",id+" :Item Deleted.!",null);
+    }
+
+    @GetMapping("/searchItem")
+    public ResponseUtil searchItem(@RequestParam("val") String searchWord) {
+        return new ResponseUtil("200","Done",service.searchByAll(searchWord));
     }
 
 }
