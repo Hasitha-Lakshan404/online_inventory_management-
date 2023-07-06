@@ -14,9 +14,9 @@ $('#btnSaveAddItem').click(function () {
 
 function setAutoDescription() {
     if ($('#addItemDescription').val() != "") {
-        return  $('#addItemDescription').val();
+        return $('#addItemDescription').val();
     } else {
-        return  "No Description"
+        return "No Description"
     }
 }
 
@@ -24,7 +24,7 @@ function setAutoDescription() {
 /*Save*/
 function saveItem() {
 
-    des =setAutoDescription();
+    des = setAutoDescription();
 
     var item = {
         itemName: $('#addItemName').val(),
@@ -45,6 +45,7 @@ function saveItem() {
                 loadItemData();
             }
             loadItemData();
+            clearItemInputFields();
         },
         error: function (err) {
             console.log(err)
@@ -90,7 +91,7 @@ function bindRowClickEvents() {
 
         var qty = $(this).children(":eq(4)").text().split(" ");
 
-        iId =$(this).children(":eq(0)").text();
+        iId = $(this).children(":eq(0)").text();
         $('#addItemName').val($(this).children(":eq(1)").text());
         $('#addItemType').val($(this).children(":eq(2)").text());
         $('#addItemQuantity').val(qty[0]);
@@ -108,10 +109,10 @@ $("#btnUpdateAddItem").click(function () {
 })
 
 function itemUpdate() {
-    des =setAutoDescription();
+    des = setAutoDescription();
 
     var itm = {
-        itemId:iId,
+        itemId: iId,
         itemName: $('#addItemName').val(),
         itemType: $('#addItemType').val(),
         quantity: $('#addItemQuantity').val() + " " + $('#qtyDropdown').val(),
@@ -127,7 +128,8 @@ function itemUpdate() {
         data: JSON.stringify(itm),
         success: function (res) {
             // alert(res.message);
-           loadItemData();
+            loadItemData();
+            clearItemInputFields();
         }, error: function (error) {
             var jsObject = JSON.parse(error.responseText);
             alert(jsObject.message);
@@ -142,10 +144,15 @@ $("#btnDeleteAddItem").click(function () {
 
 function deleteItem() {
     $.ajax({
-        url: baseUrl+"item?id=" + iId,
+        url: baseUrl + "item?id=" + iId,
         method: "delete",
         success(resp) {
             loadItemData();
         }
     });
+}
+
+/*Clear*/
+function clearItemInputFields() {
+    $('#addItemName,#addItemType,#addItemQuantity,#qtyDropdown,#addItemUnitPrice,#addItemDescription').val("");
 }
