@@ -5,6 +5,7 @@
     <title>Inventory Management</title>
     <link href="assets/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
 
 </head>
 
@@ -152,7 +153,7 @@
 
                     <div class="col " style="margin-left: 230px">
                             <select class="cssForDropdown" id="findItemByTypeDropdown" name="findItemByTypeDropdown">
-                                <!--Options-->
+                                &lt;!&ndash;Options&ndash;&gt;
 
                             </select>
                     </div>
@@ -168,7 +169,7 @@
 
             <div class="card-body pb-0">
 
-                <table class="table table-borderless">
+                <table id="tblTbl" class="table table-borderless">
                     <thead>
                     <tr>
                         <th scope="col">Item id</th>
@@ -192,10 +193,12 @@
 
 <script src="assets/js/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
 <script src="controller/ItemController.js"></script>
+<script>
 
 
+</script>
 </body>
 </html>

@@ -113,7 +113,17 @@ a:hover {
     max-width: 60px;
 }
 
+tr:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
 
+tr:active {
+    background: linear-gradient(90deg, rgba(160,158,184,1) 1%, rgba(72,72,234,0.7876400560224089) 39%, rgba(0,212,255,1) 100%);    /*background-color: #6c4bc9;*/
+}
+.item-table .selected {
+    background-color: #ffcc99;
+}
 
 /**/
 .cssForDropdown {

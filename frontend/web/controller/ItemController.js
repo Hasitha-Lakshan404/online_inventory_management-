@@ -5,8 +5,6 @@ let it; //item
 
 
 $(window).on('load', function () {
-    loadItemData();
-
 
     $("#addItemForm").validate({
         rules: {
@@ -59,8 +57,21 @@ $(window).on('load', function () {
             error.insertAfter(element);
         }
     });
+
+    $('#tblTbl').DataTable({
+        language: {
+            emptyTable: "No Data Available",
+            info: "Showing _START_ to _END_ of _TOTAL_ entries",
+            infoEmpty: "Showing 0 to 0 of entries",
+            lengthMenu: "show _MENU_ entries",
+            search: "Search:",
+            zeroRecords: "No matching records found"
+        }
+    })
+
 })
 
+loadItemData();
 
 $('#btnSaveAddItem').click(function () {
     duplicateChecker();
