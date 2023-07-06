@@ -8,7 +8,13 @@ $(window).on('load', function () {
 
 
 $('#btnSaveAddItem').click(function () {
-    saveItem();
+
+    console.log("Save eke check krna eaka"+isItemDuplicate())
+    if(isItemDuplicate()){ //if the item Name already exists
+        alert("Your Name is already in")
+    }else{
+        saveItem();
+    }
 })
 
 
@@ -148,6 +154,7 @@ function deleteItem() {
         method: "delete",
         success(resp) {
             loadItemData();
+            clearItemInputFields();
         }
     });
 }
@@ -155,4 +162,40 @@ function deleteItem() {
 /*Clear*/
 function clearItemInputFields() {
     $('#addItemName,#addItemType,#addItemQuantity,#qtyDropdown,#addItemUnitPrice,#addItemDescription').val("");
+}
+
+
+/*New Button*/
+$("#btnNewAddItem").click(function () {
+    clearItemInputFields();
+})
+
+
+/*function validate*/
+
+
+/*item duplicate add validate*/
+function isItemDuplicate() {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: baseUrl + "item/" + "allItems",
+            method: "GET",
+            success: function (resp) {
+                if (resp.status === 200) {
+                    for (const item of resp.data) {
+                        if (item.itemName === $('#addItemName').val()) {
+                            resolve(true);
+                            return true;
+                        }
+                    }
+                    resolve(false);
+                } else {
+                    reject(new Error('Failed to fetch items.'));
+                }
+            },
+            error: function (error) {
+                reject(error);
+            }
+        });
+    });
 }
