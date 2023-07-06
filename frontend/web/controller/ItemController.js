@@ -108,6 +108,7 @@ function bindRowClickEvents() {
 
 /*Update*/
 $("#btnUpdateAddItem").click(function () {
+    des = setAutoDescription();
 
     var itm = {
         itemId: iId,
@@ -121,7 +122,7 @@ $("#btnUpdateAddItem").click(function () {
 })
 
 function itemUpdate(itm) {
-    des = setAutoDescription();
+
 
 
     $.ajax({
