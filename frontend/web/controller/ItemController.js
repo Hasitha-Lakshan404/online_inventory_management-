@@ -6,6 +6,59 @@ let it; //item
 
 $(window).on('load', function () {
     loadItemData();
+
+
+    $("#addItemForm").validate({
+        rules: {
+            addItemName: {
+                required: true
+            },
+            addItemType: {
+                required: true
+            },
+            addItemQuantity: {
+                required: true,
+                digits: true
+            },
+            addItemUnitPrice:  {
+                required: true,
+                number: true
+            },
+            addItemDescription: {
+                required: true
+            }
+        },
+        messages: {
+            addItemName: {
+                required:"Please enter Item Name"
+            },
+            addItemType: {
+                required:"Please enter Item Type"
+            },
+            addItemQuantity: {
+                required: "Please enter  Quantity",
+                digits: "Please enter Valid Quantity"
+            },
+            addItemUnitPrice: {
+                required: "Please enter Unit Price",
+                number: "Please enter Valid Unit Price"
+            },
+            addItemDescription:{
+                required:"Please enter Item Description"
+            }
+        },
+        errorElement: "p",
+        errorClass: "text-danger",
+        highlight: function (element) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element) {
+            $(element).removeClass("is-invalid");
+        },
+        errorPlacement: function (error, element) {
+            error.insertAfter(element);
+        }
+    });
 })
 
 
@@ -62,7 +115,6 @@ function loadItemData() {
 
     $("#itemTable").empty();
     $("#findItemByTypeDropdown").empty();
-
 
 
     $.ajax({
@@ -268,7 +320,6 @@ function searchAndSort(keyword) {
                 bindRowClickEvents();
 
             }
-
         }
     });
 }

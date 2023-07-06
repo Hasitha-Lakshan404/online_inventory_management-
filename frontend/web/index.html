@@ -38,7 +38,7 @@
                         <div class="col-sm-4">
                             <div class="form-groupMRT">
                                 <input class="form-control" id="addItemName" placeholder="Item Name"
-                                       type="text">
+                                       type="text" name="addItemName">
                                 <span class="control-error" id="lblAddItemName"></span>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                         <div class="col-sm-4">
                             <div class="form-groupMRT">
                                 <input class="form-control" id="addItemType" placeholder="Item Type"
-                                       type="text">
+                                       type="text" name="addItemType">
                                 <span class="control-error" id="lblAddItemType"></span>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-groupMRT">
                                         <input class="form-control" id="addItemQuantity" placeholder="Quantity"
-                                               type="text">
+                                               type="text" name="addItemQuantity">
                                         <span class="control-error" id="lblAddItemQuantity"></span>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                         <div class="col-sm-4">
                             <div class="form-groupMRT">
                                 <input class="form-control" id="addItemUnitPrice" placeholder="Unit Price"
-                                       type="text">
+                                       type="text" name="addItemUnitPrice">
                                 <span class="control-error" id="lblAddItemUnitPrice"></span>
                             </div>
                         </div>
@@ -103,13 +103,12 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <textarea class="form-control" id="addItemDescription"
-                                          placeholder="Description here" rows="3"></textarea>
+                                          placeholder="Description here" rows="3" name="addItemDescription"></textarea>
                             </div>
                         </div>
 
                     </div>
                     <br>
-
 
                 </form>
 
@@ -132,7 +131,6 @@
                                 style="background-color: navy;color: white; border: none">New
                         </button>
                     </div>
-
 
                     <div class="col-sm-3" style="margin-left: -260px">
                         <button class="btn btn-primary" id="btnSaveAddItem"
@@ -179,14 +177,12 @@
                         <th scope="col">Description</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Unit Price</th>
-
                     </tr>
                     </thead>
                     <tbody id="itemTable">
 
                     </tbody>
                 </table>
-
 
             </div>
         </div>
@@ -195,7 +191,11 @@
 </main>
 
 <script src="assets/js/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
 <script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
 <script src="controller/ItemController.js"></script>
+
+
 </body>
 </html>
