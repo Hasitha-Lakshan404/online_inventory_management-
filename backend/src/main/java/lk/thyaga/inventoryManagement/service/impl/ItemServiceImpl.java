@@ -4,6 +4,7 @@ import lk.thyaga.inventoryManagement.dto.ItemDTO;
 import lk.thyaga.inventoryManagement.entity.Item;
 import lk.thyaga.inventoryManagement.repo.ItemRepo;
 import lk.thyaga.inventoryManagement.service.ItemService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +19,12 @@ import java.util.List;
  * Time :3:18 AM
  */
 
+@RequiredArgsConstructor
 @Service
 public class ItemServiceImpl implements ItemService {
 
-    @Autowired
-    ItemRepo repo;
-
-    @Autowired
-    ModelMapper mapper;
+    private final ItemRepo repo;
+    private final ModelMapper mapper;
 
 
     @Override

@@ -3,6 +3,8 @@ package lk.thyaga.inventoryManagement.controller;
 import lk.thyaga.inventoryManagement.dto.ItemDTO;
 import lk.thyaga.inventoryManagement.service.ItemService;
 import lk.thyaga.inventoryManagement.util.ResponseUtil;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +19,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1/item")
 @CrossOrigin
+@RequiredArgsConstructor
 public class ItemController {
 
-    @Autowired
-    ItemService service;
+    private final ItemService service;
 
     @PostMapping
     public ResponseUtil saveItem(@RequestBody ItemDTO dto) {
