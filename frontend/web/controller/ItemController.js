@@ -1,8 +1,7 @@
 var baseUrl = "http://localhost:8080/api/v1/"
 var iId;
-let des;
-let bool;
-let it;
+let des; //description
+let it; //item
 
 
 $(window).on('load', function () {
@@ -109,11 +108,6 @@ function bindRowClickEvents() {
 
 /*Update*/
 $("#btnUpdateAddItem").click(function () {
-    itemUpdate();
-})
-
-function itemUpdate() {
-    des = setAutoDescription();
 
     var itm = {
         itemId: iId,
@@ -123,6 +117,11 @@ function itemUpdate() {
         unitPrice: $('#addItemUnitPrice').val(),
         description: des
     }
+    itemUpdate(itm);
+})
+
+function itemUpdate(itm) {
+    des = setAutoDescription();
 
 
     $.ajax({
@@ -169,7 +168,6 @@ $("#btnNewAddItem").click(function () {
 })
 
 
-
 /*function validate*/
 
 /*item duplicate add validate*/
@@ -180,7 +178,7 @@ function isItemDuplicate(callback) {
         success: function (resp) {
             for (const item of resp.data) {
                 if (item.itemName === $('#addItemName').val()) {
-                    it=item;
+                    it = item;
                     callback(true);
                     return;
                 }
@@ -192,13 +190,28 @@ function isItemDuplicate(callback) {
 
 function duplicateChecker() {
     isItemDuplicate(function (isDuplicate) {
-        /*console.log(it); // Output: true or false
+        /*; // Output: true or false
         console.log(isDuplicate); // Output: true or false
        bool=isDuplicate;*/
 
-        if(isDuplicate){
-            alert("duplicate")
-        }else{
+        if (isDuplicate) { //if item name already exists
+            console.log(it);
+
+            var qty = it.quantity.split(" ");
+            let totalQty= parseInt(qty[0])+parseInt($('#addItemQuantity').val())
+
+            var newItem = {
+                itemId: it.itemId,
+                itemName: it.itemName,
+                itemType: it.itemType,
+                quantity: totalQty + " " +qty[1],
+                unitPrice: it.unitPrice,
+                description: it.description
+            }
+
+            itemUpdate(newItem);
+
+        } else {
             saveItem();
         }
 
