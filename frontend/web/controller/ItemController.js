@@ -235,15 +235,28 @@ function duplicateChecker() {
 $('#searchInput').keypress(function (event) {
     if (event.which === 13) { //track the "ENTER" key
         const searchWord = $(this).val();
+        searchAndSort(searchWord);
+    }
+});
 
-        $("#itemTable").empty();
+$("#findItemByTypeDropdown").change(function () {
+    // Event handler code here
+    var selectedValue = $(this).val();
+    // console.log("Selected option: " + selectedValue);
+    searchAndSort(selectedValue);
 
-        $.ajax({
-            url: baseUrl + `item/searchItem?val=${encodeURIComponent(searchWord)}`,
-            method: "GET",
-            success: function (resp) {
-                for (const item of resp.data) {
-                    let div = `<tr>
+});
+
+function searchAndSort(keyword) {
+
+    $("#itemTable").empty();
+
+    $.ajax({
+        url: baseUrl + `item/searchItem?val=${encodeURIComponent(keyword)}`,
+        method: "GET",
+        success: function (resp) {
+            for (const item of resp.data) {
+                let div = `<tr>
             <td>${item.itemId}</td>
             <td>${item.itemName}</td>
             <td>${item.itemType}</td>
@@ -251,19 +264,11 @@ $('#searchInput').keypress(function (event) {
             <td>${item.quantity}</td>
             <td>${item.unitPrice}</td>
            </tr>`;
-                    $("#itemTable").append(div);
-                    bindRowClickEvents();
-
-                }
+                $("#itemTable").append(div);
+                bindRowClickEvents();
 
             }
-        });
 
-    }
-});
-
-$("#findItemByTypeDropdown").change(function () {
-    // Event handler code here
-    var selectedValue = $(this).val();
-    console.log("Selected option: " + selectedValue);
-});
+        }
+    });
+}
